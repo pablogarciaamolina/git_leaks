@@ -1,7 +1,5 @@
 #! user/bin/python
-from asyncio.format_helpers import extract_stack
-from git import Repo
-
+from git import Repo, Commit
 import re
 
 
@@ -22,7 +20,7 @@ def extract(path: str) -> list:
     return list(repo.iter_commits())
 
 
-def transform(commits: list, found: list=[]) -> list:
+def transform(commits: list[Commit], found: list=[]) -> list:
     
     for commit in commits:
         s = re.findall(PATTERN, commit.message, re.I)
@@ -30,7 +28,6 @@ def transform(commits: list, found: list=[]) -> list:
         found.append([commit,s]) if s != [] else None 
 
     return found
-    ...
 
 def load(found: list):
 
