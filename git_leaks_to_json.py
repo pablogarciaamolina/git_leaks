@@ -22,7 +22,6 @@ def load_to_json(found: list[list]):
 
     secrets = {'leaking_commits': []}
     for leak in found:
-        print(secrets)
         commit: Commit = leak[0]
         commit_dict = {
                 'author': commit.author.name,
@@ -34,7 +33,7 @@ def load_to_json(found: list[list]):
         secrets['leaking_commits'].append(commit_dict)
     
     with open("secrets.json", "w") as outfile:
-        json.dump(secrets, fp=outfile, skipkeys=True, indent=4)
+        json.dump(secrets, fp=outfile, skipkeys=True, indent=3)
 
 
 
